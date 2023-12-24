@@ -1,0 +1,23 @@
+<p>article-new-reactive works!</p>
+<p>Form Status: {{ articleReactiveForm.status }}</p>
+
+<form [formGroup]="articleReactiveForm">
+    <div>
+        <label for="nombre">Nombre: </label>
+        <input id="nombre" type="text" formControlName="nombre">
+    </div>
+    <div>
+        <label for="precio">Precio: </label>
+        <input id="precio" type="text" formControlName="precio">
+    </div>
+    <div>
+        <label for="imagen">Imagen: </label>
+        <input id="imagen" type="text" formControlName="URLimagen">
+    </div>
+    <div>
+        <label for="venta">Está a la venta? </label>
+        <input id="venta" type="checkbox" formControlName="venta">
+    </div>
+    <button type="submit">Submit</button>
+    <!-- <button type="submit" [disabled]="!articleReactiveForm.valid">Submit</button> -->
+</form>

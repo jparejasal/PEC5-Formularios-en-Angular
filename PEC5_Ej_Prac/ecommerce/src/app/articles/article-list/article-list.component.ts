@@ -59,7 +59,7 @@ import { Article } from '../../model/article';
 
 // Clase principal del componente article-list
 export class ArticleListComponent implements OnInit {
-  
+
   // Representa un array de tipo modelo article
   public articles: Array<Article>
 
@@ -91,5 +91,5 @@ export class ArticleListComponent implements OnInit {
         a.quantityInCart--;
       }
     }                                   
-  }
+  }  
 }

@@ -1,0 +1,27 @@
+<h2>Registrar un nuevo artículo template</h2>
+
+<div class="form-group">
+    <form (ngSubmit)="createArticleTemplate(articleTemplateForm)" #articleTemplateForm="ngForm">
+        <div ngModelGroup="article">
+            <div class="article-id">
+                <input type="number" placeholder="Id" required name="id" ngModel>
+            </div>
+            <div class="article-name">
+                <input type="text" placeholder="nombre" required  name="name" ngModel>
+            </div>                       
+            <div class="article-imageUrl">
+                <input type="text" placeholder="URL de imagen" required name="imageUrl" ngModel>
+            </div>
+            <div class="article-price">
+                <input type="number" placeholder="Precio" name="price" required ngModel>
+            </div>            
+            <div class="article-isOnSale">
+                <input type="checkbox" name="isOnSale" ngModel> A la venta?
+            </div>
+        </div>
+        <button type="submit">Registrar</button>
+    </form>
+</div>
+
+<h4>Stock Name is {{article | json}}</h4>
+<h4>Data has been confirmed: {{article}}</h4>
