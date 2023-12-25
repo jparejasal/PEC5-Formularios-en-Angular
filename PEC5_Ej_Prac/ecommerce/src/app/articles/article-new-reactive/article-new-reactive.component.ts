@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
+// Importación de custom validations
+import { misValidaciones } from './../../../util/misValidaciones';
 
 @Component({
   selector: 'app-article-new-reactive',
@@ -11,12 +12,17 @@ import { Validators } from '@angular/forms';
 export class ArticleNewReactiveComponent {
 
   articleReactiveForm = this.formBuilder.group({
-    nombre: ['', Validators.required],
-    precio: ['', Validators.required],
-    URLimagen: ['', Validators.required],
+    nombre: ['', [Validators.required, misValidaciones.NameArticleValidator]],
+    precio: ['', [Validators.required, Validators.pattern('[0-9]+([\.,][0-9]+)?'), Validators.min(0.1)]],
+    URLimagen: ['', [Validators.required, Validators.pattern('https?://.+')]],
     venta: [''],   
   });
+  registrado = false;
 
   constructor(private formBuilder: FormBuilder) {}
 
+  registrarArticulo(): void {
+    console.log('Artículo registrado', this.articleReactiveForm.value, this.articleReactiveForm.invalid);
+    this.registrado = true;
+  }
 }

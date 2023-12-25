@@ -1,23 +1,31 @@
-<p>article-new-reactive works!</p>
-<p>Form Status: {{ articleReactiveForm.status }}</p>
-
-<form [formGroup]="articleReactiveForm">
-    <div>
-        <label for="nombre">Nombre: </label>
-        <input id="nombre" type="text" formControlName="nombre">
+<h2>Registrar un nuevo artículo reactive</h2>
+<form [formGroup]="articleReactiveForm" (ngSubmit)="registrarArticulo()">
+    <div>               
+        <input id="nombre" type="text" placeholder="Nombre" formControlName="nombre">
+        <div class="alert alert-danger" *ngIf="articleReactiveForm.get('nombre').invalid && (articleReactiveForm.get('nombre').dirty || articleReactiveForm.get('nombre').touched || registrado)">           
+            <div *ngIf="articleReactiveForm.get('nombre').errors.required">Nombre requerido</div>
+            <div *ngIf="articleReactiveForm.get('nombre').errors?.['invalidName']">Nombre inválido</div>           
+        </div>
     </div>
-    <div>
-        <label for="precio">Precio: </label>
-        <input id="precio" type="text" formControlName="precio">
+    <div>               
+        <input id="precio" type="text" placeholder="Precio" formControlName="precio">
+        <div class="alert alert-danger" *ngIf="articleReactiveForm.get('precio').invalid && (articleReactiveForm.get('precio').dirty || articleReactiveForm.get('precio').touched || registrado)">           
+            <div *ngIf="articleReactiveForm.get('precio').errors.required">Precio del artículo requerido</div>
+            <div *ngIf="articleReactiveForm.get('precio').errors.pattern">Precio del artículo debe ser numérico</div>            
+            <div *ngIf="articleReactiveForm.get('precio').errors.min">El precio mínimo debe se de 0.1€</div>           
+        </div>
     </div>
-    <div>
-        <label for="imagen">Imagen: </label>
-        <input id="imagen" type="text" formControlName="URLimagen">
+    <div>        
+        <input id="imagen" type="text" placeholder="URL de la imagen" formControlName="URLimagen">
+        <div class="alert alert-danger" *ngIf="articleReactiveForm.get('URLimagen').invalid && (articleReactiveForm.get('URLimagen').dirty || articleReactiveForm.get('URLimagen').touched || registrado)">           
+            <div *ngIf="articleReactiveForm.get('URLimagen').errors.required">URL de imagen requerida</div>
+            <div *ngIf="articleReactiveForm.get('URLimagen').errors.pattern">URL incorrecta</div>           
+        </div>
     </div>
     <div>
         <label for="venta">Está a la venta? </label>
         <input id="venta" type="checkbox" formControlName="venta">
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit">Registrar</button>
     <!-- <button type="submit" [disabled]="!articleReactiveForm.valid">Submit</button> -->
 </form>
